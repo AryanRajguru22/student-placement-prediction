@@ -1,0 +1,41 @@
+{
+  "fitted_on": "train + validation",
+  "n": 8425,
+  "specification_source": "models/phase4/model_configs.json (unchanged)",
+  "models": {
+    "LR_B": {
+      "family": "LR",
+      "variant": "B",
+      "config": {
+        "C": 1.0,
+        "class_weight": null
+      }
+    },
+    "GB_B": {
+      "family": "GB",
+      "variant": "B",
+      "config": {
+        "n_estimators": 300,
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "min_samples_leaf": 1
+      }
+    },
+    "RF_B": {
+      "family": "RF",
+      "variant": "B",
+      "config": {
+        "n_estimators": 300,
+        "max_depth": 10,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt"
+      }
+    }
+  },
+  "thresholds": [
+    0.5,
+    0.35
+  ],
+  "sklearn_version": "1.9.1",
+  "test_file_sha256": "43ef7d4d7134abb65ef336830508795656dec20a076f79f4ffcd30bdbad1bc12"
+}

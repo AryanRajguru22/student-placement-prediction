@@ -1,0 +1,206 @@
+{
+  "model_id": "LR_B",
+  "model_name": "Logistic Regression B",
+  "artifact": "models/phase7/LR_B_final.joblib",
+  "artifact_sha256": "58e8b04e9666b13be47e0cb5c4850707312976776ab5bdfbaa436874ca3cb0eb",
+  "sklearn_version_at_fit": "1.9.1",
+  "fitted_on": "train + validation",
+  "n_fit": 8425,
+  "config": {
+    "C": 1.0,
+    "class_weight": null
+  },
+  "features": [
+    "CGPA",
+    "Internships",
+    "Projects",
+    "Workshops/Certifications",
+    "AptitudeTestScore",
+    "SoftSkillsRating",
+    "ExtracurricularActivities",
+    "PlacementTraining",
+    "SSC_Marks",
+    "HSC_Marks"
+  ],
+  "continuous": [
+    "CGPA",
+    "AptitudeTestScore",
+    "SoftSkillsRating",
+    "SSC_Marks",
+    "HSC_Marks"
+  ],
+  "count": [
+    "Internships",
+    "Projects",
+    "Workshops/Certifications"
+  ],
+  "binary": [
+    "ExtracurricularActivities",
+    "PlacementTraining"
+  ],
+  "reference_levels": {
+    "Internships": 1,
+    "Projects": 3,
+    "Workshops/Certifications": 0,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "No"
+  },
+  "ranges": {
+    "CGPA": {
+      "min": 6.5,
+      "max": 9.1,
+      "median": 7.7,
+      "train_mean": 7.69740059347181,
+      "integer_valued": false
+    },
+    "AptitudeTestScore": {
+      "min": 60.0,
+      "max": 90.0,
+      "median": 80.0,
+      "train_mean": 79.32154302670624,
+      "integer_valued": true
+    },
+    "SoftSkillsRating": {
+      "min": 3.0,
+      "max": 4.8,
+      "median": 4.4,
+      "train_mean": 4.3199881305637975,
+      "integer_valued": false
+    },
+    "SSC_Marks": {
+      "min": 55.0,
+      "max": 90.0,
+      "median": 70.0,
+      "train_mean": 69.14100890207715,
+      "integer_valued": true
+    },
+    "HSC_Marks": {
+      "min": 57.0,
+      "max": 88.0,
+      "median": 73.0,
+      "train_mean": 74.44059347181009,
+      "integer_valued": true
+    }
+  },
+  "levels": {
+    "Internships": {
+      "levels": [
+        0,
+        1,
+        2
+      ],
+      "n_per_level": {
+        "0": 1673,
+        "1": 4718,
+        "2": 2034
+      },
+      "default": 1
+    },
+    "Projects": {
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_per_level": {
+        "0": 22,
+        "1": 3014,
+        "2": 2160,
+        "3": 3229
+      },
+      "default": 2
+    },
+    "Workshops/Certifications": {
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_per_level": {
+        "0": 3160,
+        "1": 2275,
+        "2": 2744,
+        "3": 246
+      },
+      "default": 1
+    },
+    "ExtracurricularActivities": {
+      "levels": [
+        "No",
+        "Yes"
+      ],
+      "n_per_level": {
+        "Yes": 4915,
+        "No": 3510
+      },
+      "default": "Yes"
+    },
+    "PlacementTraining": {
+      "levels": [
+        "No",
+        "Yes"
+      ],
+      "n_per_level": {
+        "Yes": 6149,
+        "No": 2276
+      },
+      "default": "Yes"
+    }
+  },
+  "rare_level_threshold_n": 50,
+  "thresholds": {
+    "operating": 0.35,
+    "reference": 0.5,
+    "operating_rule": "selected operating threshold under the F1-oriented criterion (Phase 6, predeclared validation-F1 rule); not claimed to be the best threshold"
+  },
+  "phase7_reported": {
+    "source": "src/phase7_findings.md / results/metrics/modeling/08_test_bootstrap_ci.csv, 08_test_calibration_metrics.csv (aggregate metrics)",
+    "n_test": 1487,
+    "roc_auc": [
+      0.8856905046532674,
+      0.8676438884726877,
+      0.901652055965802
+    ],
+    "log_loss": [
+      0.4196307407351142,
+      0.3934549144480948,
+      0.4485784714167956
+    ],
+    "brier": [
+      0.1335484882157763,
+      0.1237650571034581,
+      0.1448478668086887
+    ],
+    "calibration_slope": 1.0512983693113125,
+    "calibration_intercept": 0.0410623011440415,
+    "ece": 0.0163577291066308,
+    "threshold_metrics": {
+      "0.35": {
+        "accuracy": 0.8016139878950908,
+        "precision": 0.7215363511659808,
+        "recall": 0.8511326860841424,
+        "f1": 0.7809948032665182,
+        "specificity": 0.766398158803222
+      },
+      "0.50": {
+        "accuracy": 0.812373907195696,
+        "precision": 0.7792421746293245,
+        "recall": 0.7653721682847896,
+        "f1": 0.7722448979591837,
+        "specificity": 0.8457997698504027
+      }
+    }
+  },
+  "dataset": {
+    "source": "Hugging Face Krooz/Campus_Recruitment_CSV",
+    "url": "https://huggingface.co/datasets/Krooz/Campus_Recruitment_CSV",
+    "license": "CC0-1.0",
+    "n_raw": 10000,
+    "n_modeling": 9912,
+    "n_train": 6938,
+    "n_validation": 1487,
+    "n_test": 1487
+  }
+}

@@ -1,0 +1,17 @@
+metric,value
+random_seed,42
+original_rows,10000
+original_rows_train/validation/test,7225/1275/1500
+exact_duplicate_groups,66
+exact_duplicate_rows_in_groups,138
+exact_duplicate_surplus_rows,72
+unique_feature_profiles,9920
+duplicate_feature_profiles,74
+duplicate_profiles_same_label,66
+duplicate_profiles_conflicting_label,8
+original_cross_split_profiles,33
+rows_removed_conflicting,16
+groups_removed_conflicting,8
+rows_removed_duplicate_profiles,72
+final_modeling_rows,9912
+final_cross_split_profile_overlap,0

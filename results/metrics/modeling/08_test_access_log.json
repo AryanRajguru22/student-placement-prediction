@@ -1,0 +1,8 @@
+{
+  "opened_at_utc": "2026-10-02T18:51:44+00:00",
+  "file": "test.csv",
+  "sha256": "43ef7d4d7134abb65ef336830508795656dec20a076f79f4ffcd30bdbad1bc12",
+  "rows": 1487,
+  "dry_run": false,
+  "note": "written immediately after the single read; its existence blocks any second execution of the opening cell"
+}

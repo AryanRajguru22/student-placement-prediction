@@ -1,0 +1,129 @@
+section,item,value,note
+overview,rows,9912.0,
+overview,predictors,10.0,
+overview,placed_pct,41.56,
+overview,notplaced_pct,58.44,
+target,imbalance_ratio_notplaced_to_placed,1.406,
+numeric_vs_target,CGPA: cohens_d,0.936,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,CGPA: mean_placed,8.011,
+numeric_vs_target,CGPA: mean_notplaced,7.467,
+numeric_vs_target,AptitudeTestScore: cohens_d,1.227,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,AptitudeTestScore: mean_placed,84.351,
+numeric_vs_target,AptitudeTestScore: mean_notplaced,75.81,
+numeric_vs_target,SoftSkillsRating: cohens_d,0.945,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,SoftSkillsRating: mean_placed,4.526,
+numeric_vs_target,SoftSkillsRating: mean_notplaced,4.174,
+numeric_vs_target,SSC_Marks: cohens_d,1.07,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,SSC_Marks: mean_placed,74.848,
+numeric_vs_target,SSC_Marks: mean_notplaced,64.979,
+numeric_vs_target,HSC_Marks: cohens_d,1.176,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,HSC_Marks: mean_placed,79.702,
+numeric_vs_target,HSC_Marks: mean_notplaced,70.648,
+numeric_vs_target,Internships: cohens_d,0.529,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,Internships: mean_placed,1.24,
+numeric_vs_target,Internships: mean_notplaced,0.9,
+numeric_vs_target,Projects: cohens_d,1.083,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,Projects: mean_placed,2.502,
+numeric_vs_target,Projects: mean_notplaced,1.674,
+numeric_vs_target,Workshops/Certifications: cohens_d,0.776,"Placed minus NotPlaced, pooled SD"
+numeric_vs_target,Workshops/Certifications: mean_placed,1.388,
+numeric_vs_target,Workshops/Certifications: mean_notplaced,0.733,
+count_rate,Internships=0: placement_rate_%,33.43,n=1983
+count_rate,Internships=1: placement_rate_%,32.61,n=5535
+count_rate,Internships=2: placement_rate_%,68.96,n=2394
+count_rate,Projects=0: placement_rate_%,60.0,n=30
+count_rate,Projects=1: placement_rate_%,16.87,n=3545
+count_rate,Projects=2: placement_rate_%,31.37,n=2550
+count_rate,Projects=3: placement_rate_%,71.38,n=3787
+count_rate,Workshops/Certifications=0: placement_rate_%,28.35,n=3735
+count_rate,Workshops/Certifications=1: placement_rate_%,21.05,n=2674
+count_rate,Workshops/Certifications=2: placement_rate_%,72.6,n=3219
+count_rate,Workshops/Certifications=3: placement_rate_%,56.34,n=284
+workshops_within_aptitude_band,"workshops=0, Low aptitude: rate_%",15.4,n=1724
+workshops_within_aptitude_band,"workshops=0, Mid aptitude: rate_%",29.3,n=1309
+workshops_within_aptitude_band,"workshops=0, High aptitude: rate_%",58.4,n=702
+workshops_within_aptitude_band,"workshops=1, Low aptitude: rate_%",9.9,n=1450
+workshops_within_aptitude_band,"workshops=1, Mid aptitude: rate_%",25.3,n=834
+workshops_within_aptitude_band,"workshops=1, High aptitude: rate_%",53.3,n=390
+workshops_within_aptitude_band,"workshops=2, Low aptitude: rate_%",31.5,n=381
+workshops_within_aptitude_band,"workshops=2, Mid aptitude: rate_%",61.1,n=840
+workshops_within_aptitude_band,"workshops=2, High aptitude: rate_%",85.3,n=1998
+workshops_within_aptitude_band,"workshops=3, Low aptitude: rate_%",36.4,n=55
+workshops_within_aptitude_band,"workshops=3, Mid aptitude: rate_%",45.4,n=108
+workshops_within_aptitude_band,"workshops=3, High aptitude: rate_%",75.2,n=121
+categorical_rate,ExtracurricularActivities=No: placement_rate_%,13.68,n=4144
+categorical_rate,ExtracurricularActivities=Yes: placement_rate_%,61.58,n=5768
+categorical_rate,PlacementTraining=No: placement_rate_%,15.59,n=2682
+categorical_rate,PlacementTraining=Yes: placement_rate_%,51.19,n=7230
+categorical_rate,combo Extra: No / Train: No: placement_rate_%,6.08,n=1826
+categorical_rate,combo Extra: No / Train: Yes: placement_rate_%,19.67,n=2318
+categorical_rate,combo Extra: Yes / Train: No: placement_rate_%,35.86,n=856
+categorical_rate,combo Extra: Yes / Train: Yes: placement_rate_%,66.06,n=4912
+correlation_with_target,CGPA: pearson_r,0.419,
+correlation_with_target,CGPA: spearman_rho,0.443,
+correlation_with_target,AptitudeTestScore: pearson_r,0.517,
+correlation_with_target,AptitudeTestScore: spearman_rho,0.53,
+correlation_with_target,SoftSkillsRating: pearson_r,0.422,
+correlation_with_target,SoftSkillsRating: spearman_rho,0.444,
+correlation_with_target,SSC_Marks: pearson_r,0.466,
+correlation_with_target,SSC_Marks: spearman_rho,0.461,
+correlation_with_target,HSC_Marks: pearson_r,0.501,
+correlation_with_target,HSC_Marks: spearman_rho,0.486,
+correlation_with_target,Internships: pearson_r,0.252,
+correlation_with_target,Internships: spearman_rho,0.256,
+correlation_with_target,Projects: pearson_r,0.471,
+correlation_with_target,Projects: spearman_rho,0.474,
+correlation_with_target,Workshops/Certifications: pearson_r,0.357,
+correlation_with_target,Workshops/Certifications: spearman_rho,0.358,
+correlation_predictors,max_abs_pairwise_pearson,0.559,"('AptitudeTestScore', 'HSC_Marks')"
+multivariate,rate_lowest_cgpa_x_lowest_aptitude_%,7.8,
+multivariate,rate_highest_cgpa_x_highest_aptitude_%,88.7,
+binned_rate_exploratory,CGPA bin 6.499-7.2: rate_%,19.0,n=2091
+binned_rate_exploratory,CGPA bin 7.2-7.6: rate_%,20.9,n=2469
+binned_rate_exploratory,CGPA bin 7.6-7.9: rate_%,38.8,n=1455
+binned_rate_exploratory,CGPA bin 7.9-8.3: rate_%,63.2,n=2252
+binned_rate_exploratory,CGPA bin 8.3-9.1: rate_%,73.9,n=1645
+binned_rate_exploratory,AptitudeTestScore bin 59.999-72: rate_%,10.2,n=2256
+binned_rate_exploratory,AptitudeTestScore bin 72-77: rate_%,24.1,n=1753
+binned_rate_exploratory,AptitudeTestScore bin 77-82: rate_%,35.9,n=1981
+binned_rate_exploratory,AptitudeTestScore bin 82-88: rate_%,57.7,n=2008
+binned_rate_exploratory,AptitudeTestScore bin 88-90: rate_%,83.4,n=1914
+binned_rate_exploratory,SoftSkillsRating bin 2.999-4: rate_%,16.0,n=2545
+binned_rate_exploratory,SoftSkillsRating bin 4-4.3: rate_%,28.1,n=2133
+binned_rate_exploratory,SoftSkillsRating bin 4.3-4.5: rate_%,43.6,n=1652
+binned_rate_exploratory,SoftSkillsRating bin 4.5-4.7: rate_%,56.2,n=1620
+binned_rate_exploratory,SoftSkillsRating bin 4.7-4.8: rate_%,75.6,n=1962
+binned_rate_exploratory,SSC_Marks bin 54.999-57: rate_%,13.7,n=2187
+binned_rate_exploratory,SSC_Marks bin 57-65: rate_%,18.6,n=1879
+binned_rate_exploratory,SSC_Marks bin 65-74: rate_%,46.9,n=2173
+binned_rate_exploratory,SSC_Marks bin 74-79: rate_%,61.0,n=1757
+binned_rate_exploratory,SSC_Marks bin 79-90: rate_%,72.0,n=1916
+binned_rate_exploratory,HSC_Marks bin 56.999-66: rate_%,16.0,n=2358
+binned_rate_exploratory,HSC_Marks bin 66-70: rate_%,19.6,n=1906
+binned_rate_exploratory,HSC_Marks bin 70-80: rate_%,37.6,n=1981
+binned_rate_exploratory,HSC_Marks bin 80-84: rate_%,67.0,n=1931
+binned_rate_exploratory,HSC_Marks bin 84-88: rate_%,76.6,n=1736
+split_check,train: n,6938.0,
+split_check,train: placed_%,41.55,
+split_check,train: CGPA mean,7.699,
+split_check,train: AptitudeTestScore mean,79.323,
+split_check,train: SoftSkillsRating mean,4.321,
+split_check,train: Internships mean,1.046,
+split_check,train: Projects mean,2.024,
+split_check,validation: n,1487.0,
+split_check,validation: placed_%,41.56,
+split_check,validation: CGPA mean,7.688,
+split_check,validation: AptitudeTestScore mean,79.313,
+split_check,validation: SoftSkillsRating mean,4.316,
+split_check,validation: Internships mean,1.029,
+split_check,validation: Projects mean,2.001,
+split_check,test: n,1487.0,
+split_check,test: placed_%,41.56,
+split_check,test: CGPA mean,7.667,
+split_check,test: AptitudeTestScore mean,79.572,
+split_check,test: SoftSkillsRating mean,4.32,
+split_check,test: Internships mean,1.034,
+split_check,test: Projects mean,2.007,
+split_check,max_KS_statistic,0.0379,
+split_check,max_pct_point_gap_discrete,1.309,
+split_check,min_p_value_of_18,0.0573,

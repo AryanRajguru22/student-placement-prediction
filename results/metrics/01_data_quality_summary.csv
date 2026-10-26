@@ -1,0 +1,13 @@
+check,value
+Missing values,0.0
+Surplus duplicate rows,72.0
+Rows in any duplicate group,138.0
+Records appearing in >1 split,28.0
+"CGPA outside [0, 10]",0.0
+"SSC_Marks outside [0, 100]",0.0
+"HSC_Marks outside [0, 100]",0.0
+"AptitudeTestScore outside [0, 100]",0.0
+"SoftSkillsRating outside [0, 5]",0.0
+Negative Internships/Projects/Workshops,0.0
+Non-integer count columns,0.0
+Target imbalance (minority %),41.97

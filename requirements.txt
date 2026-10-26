@@ -1,0 +1,13 @@
+﻿pandas
+numpy
+matplotlib
+seaborn
+scikit-learn==1.9.1
+scipy
+jupyter
+nbformat
+nbconvert
+ipykernel
+requests
+statsmodels
+streamlit>=1.50

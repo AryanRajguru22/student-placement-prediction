@@ -1,0 +1,67 @@
+case,val_row_id,feature,input_value,contribution_log_odds,effect_on_predicted_log_odds
+1 very high probability,1250,CGPA,8.7,0.4019940167294528,raises
+1 very high probability,1250,Internships,2,0.22604023340247376,raises
+1 very high probability,1250,Projects,3,0.0,negligible (|c| <= 0.05)
+1 very high probability,1250,Workshops/Certifications,2,0.42607126183206784,raises
+1 very high probability,1250,AptitudeTestScore,87,0.47019363130362474,raises
+1 very high probability,1250,SoftSkillsRating,4.7,0.25700892343433657,raises
+1 very high probability,1250,ExtracurricularActivities,Yes,0.6662005393097526,raises
+1 very high probability,1250,PlacementTraining,Yes,1.011074152360071,raises
+1 very high probability,1250,SSC_Marks,80,0.30046700884366406,raises
+1 very high probability,1250,HSC_Marks,84,0.22472046764754605,raises
+1 very high probability,1250,(intercept: reference profile),,-1.6897251781360454,baseline
+2 very low probability,712,CGPA,8.0,0.1207522434648441,raises
+2 very low probability,712,Internships,1,0.0,negligible (|c| <= 0.05)
+2 very low probability,712,Projects,1,-0.41422951661516233,lowers
+2 very low probability,712,Workshops/Certifications,0,0.0,negligible (|c| <= 0.05)
+2 very low probability,712,AptitudeTestScore,69,-0.632295271490576,lowers
+2 very low probability,712,SoftSkillsRating,3.6,-0.4887009582773184,lowers
+2 very low probability,712,ExtracurricularActivities,No,0.0,negligible (|c| <= 0.05)
+2 very low probability,712,PlacementTraining,No,0.0,negligible (|c| <= 0.05)
+2 very low probability,712,SSC_Marks,55,-0.39053420678505374,lowers
+2 very low probability,712,HSC_Marks,62,-0.2915180119492635,lowers
+2 very low probability,712,(intercept: reference profile),,-1.6897251781360454,baseline
+3 decision boundary,1215,CGPA,7.5,-0.080134737438448,lowers
+3 decision boundary,1215,Internships,1,0.0,negligible (|c| <= 0.05)
+3 decision boundary,1215,Projects,1,-0.41422951661516233,lowers
+3 decision boundary,1215,Workshops/Certifications,0,0.0,negligible (|c| <= 0.05)
+3 decision boundary,1215,AptitudeTestScore,76,-0.203549587070609,lowers
+3 decision boundary,1215,SoftSkillsRating,4.5,0.12142530857767192,raises
+3 decision boundary,1215,ExtracurricularActivities,Yes,0.6662005393097526,raises
+3 decision boundary,1215,PlacementTraining,Yes,1.011074152360071,raises
+3 decision boundary,1215,SSC_Marks,79,0.2728269602185154,raises
+3 decision boundary,1215,HSC_Marks,88,0.31858200939242054,raises
+3 decision boundary,1215,(intercept: reference profile),,-1.6897251781360454,baseline
+4 false positive (most confident),1011,CGPA,8.6,0.3618166205487945,raises
+4 false positive (most confident),1011,Internships,2,0.22604023340247376,raises
+4 false positive (most confident),1011,Projects,3,0.0,negligible (|c| <= 0.05)
+4 false positive (most confident),1011,Workshops/Certifications,2,0.42607126183206784,raises
+4 false positive (most confident),1011,AptitudeTestScore,90,0.6539417817693248,raises
+4 false positive (most confident),1011,SoftSkillsRating,4.8,0.3248007308626686,raises
+4 false positive (most confident),1011,ExtracurricularActivities,Yes,0.6662005393097526,raises
+4 false positive (most confident),1011,PlacementTraining,Yes,1.011074152360071,raises
+4 false positive (most confident),1011,SSC_Marks,80,0.30046700884366406,raises
+4 false positive (most confident),1011,HSC_Marks,85,0.24818585308376465,raises
+4 false positive (most confident),1011,(intercept: reference profile),,-1.6897251781360454,baseline
+5 false negative (most confident),243,CGPA,6.6,-0.4417313030643739,lowers
+5 false negative (most confident),243,Internships,1,0.0,negligible (|c| <= 0.05)
+5 false negative (most confident),243,Projects,1,-0.41422951661516233,lowers
+5 false negative (most confident),243,Workshops/Certifications,1,-0.3132032128009608,lowers
+5 false negative (most confident),243,AptitudeTestScore,75,-0.26479897055917573,lowers
+5 false negative (most confident),243,SoftSkillsRating,3.6,-0.4887009582773184,lowers
+5 false negative (most confident),243,ExtracurricularActivities,No,0.0,negligible (|c| <= 0.05)
+5 false negative (most confident),243,PlacementTraining,No,0.0,negligible (|c| <= 0.05)
+5 false negative (most confident),243,SSC_Marks,61,-0.22469391503416142,lowers
+5 false negative (most confident),243,HSC_Marks,72,-0.056864157587077364,lowers
+5 false negative (most confident),243,(intercept: reference profile),,-1.6897251781360454,baseline
+6 middle / uncertain,1204,CGPA,7.3,-0.1604895297997649,lowers
+6 middle / uncertain,1204,Internships,0,0.23160796698027608,raises
+6 middle / uncertain,1204,Projects,2,-0.3197911384472295,lowers
+6 middle / uncertain,1204,Workshops/Certifications,1,-0.3132032128009608,lowers
+6 middle / uncertain,1204,AptitudeTestScore,78,-0.08105082009347561,lowers
+6 middle / uncertain,1204,SoftSkillsRating,4.8,0.3248007308626686,raises
+6 middle / uncertain,1204,ExtracurricularActivities,No,0.0,negligible (|c| <= 0.05)
+6 middle / uncertain,1204,PlacementTraining,Yes,1.011074152360071,raises
+6 middle / uncertain,1204,SSC_Marks,83,0.3833871547191102,raises
+6 middle / uncertain,1204,HSC_Marks,72,-0.056864157587077364,lowers
+6 middle / uncertain,1204,(intercept: reference profile),,-1.6897251781360454,baseline

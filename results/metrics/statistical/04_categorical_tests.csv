@@ -1,0 +1,6 @@
+variable,n_levels,n,min_expected_count,assumption_expected>=5,test,statistic,dof,p_raw,cramers_v,odds_ratio_yes_vs_no,or_ci_lo,or_ci_hi,p_holm,significant_holm,family
+ExtracurricularActivities,2,9912,1722.0677966101696,True,Pearson chi-square (no continuity correction),2278.0251416889223,1,0.0,0.47940064032034874,10.112047065115657,9.119901229274774,11.212127552311824,0.0,True,categorical association tests (5)
+PlacementTraining,2,9912,1114.523607748184,True,Pearson chi-square (no continuity correction),1021.0879958010341,1,4.683204585561706e-224,0.3209600201332151,5.680251531737714,5.067853637459882,6.36665140155482,9.366409171123412e-224,True,categorical association tests (5)
+Internships,3,9912,824.0493341404358,True,Pearson chi-square (no continuity correction),976.6942962035517,2,8.19461069561081e-213,0.31390532214593747,,,,8.19461069561081e-213,True,categorical association tests (5)
+Workshops/Certifications,4,9912,118.0181598062954,True,Pearson chi-square (no continuity correction),2033.7203864622086,3,0.0,0.45296534253712045,,,,0.0,True,categorical association tests (5)
+Projects,4,9912,12.466707021791768,True,Pearson chi-square (no continuity correction),2389.2016716291946,3,0.0,0.49095960208006534,,,,0.0,True,categorical association tests (5)

@@ -1,0 +1,19 @@
+[theme]
+base = "light"
+primaryColor = "#0F4C75"
+backgroundColor = "#F6F8FB"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1D2733"
+borderColor = "#D5DCE4"
+font = "sans serif"
+
+[client]
+showErrorDetails = "none"      # uncaught errors show a generic message, never a stack trace or local file paths
+toolbarMode = "minimal"
+
+[server]
+address = "localhost"          # local use only: the app is not reachable from other machines unless this is overridden
+headless = true                # no first-run e-mail prompt; open the printed local URL in a browser yourself (run_app.bat does it for you)
+
+[browser]
+gatherUsageStats = false

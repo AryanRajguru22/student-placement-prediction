@@ -1,0 +1,12 @@
+# local environment and caches
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Held-out test split and files that contain test rows. Not published; the data are public (CC0) on Hugging Face, see DATA_NOTE.md.
+data/raw/test.csv
+data/processed/test.csv
+data/processed/modeling_dataset.csv
+data/processed/campus_recruitment_combined_flagged.csv
+results/metrics/modeling/08_test_predictions.csv

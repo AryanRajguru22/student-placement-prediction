@@ -1,0 +1,21 @@
+{
+  "provisional_model_id": "LR_B",
+  "label": "Logistic regression",
+  "variant": "B",
+  "config": {
+    "C": 1.0,
+    "class_weight": null
+  },
+  "selected_on": "validation only (train used for fitting; test never opened)",
+  "rule": "lowest val log loss among eligible, statistically indistinguishable set, tie-break by interpretability",
+  "indistinguishable_set": [
+    "LR_B",
+    "LR_A",
+    "GB_B",
+    "GB_A",
+    "RF_B"
+  ],
+  "validation_log_loss": 0.4408466698130778,
+  "validation_roc_auc": 0.8717437369889134,
+  "validation_brier": 0.14091491362424474
+}

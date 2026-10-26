@@ -1,0 +1,9 @@
+# Runtime + verification dependencies for the Streamlit app (app/app.py, app/verify_app.py).
+# Exact versions this project was developed and verified with (Python 3.11.9). scikit-learn must match the version the frozen model
+# was fitted with (1.9.1): the app refuses to start on a different version. Python 3.11 or newer is required.
+streamlit==1.64.0
+scikit-learn==1.9.1
+pandas==3.0.5
+numpy==2.4.2
+scipy==1.17.0
+joblib==1.6.0

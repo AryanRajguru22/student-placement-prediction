@@ -1,0 +1,193 @@
+{
+  "seed": 42,
+  "sklearn_version": "1.9.1",
+  "features": [
+    "CGPA",
+    "Internships",
+    "Projects",
+    "Workshops/Certifications",
+    "AptitudeTestScore",
+    "SoftSkillsRating",
+    "ExtracurricularActivities",
+    "PlacementTraining",
+    "SSC_Marks",
+    "HSC_Marks"
+  ],
+  "target": "PlacementStatus",
+  "target_encoding": {
+    "Placed": 1,
+    "NotPlaced": 0
+  },
+  "count_reference_levels_(LR)": {
+    "Internships": 1,
+    "Projects": 3,
+    "Workshops/Certifications": 0
+  },
+  "binary_reference_level": "No",
+  "threshold": 0.5,
+  "preprocessing": {
+    "A": "StandardScaler on 5 scale vars + 3 counts; one-hot ExtracurricularActivities & PlacementTraining (drop No) [LR]; trees: unscaled",
+    "B": "StandardScaler on 5 scale vars; one-hot Internships/Projects/Workshops (drop train-mode level for LR; all levels for trees) + 2 binary [LR]"
+  },
+  "models": {
+    "LR_A": {
+      "family": "LR",
+      "variant": "A",
+      "config": {
+        "C": 1.0,
+        "class_weight": null
+      }
+    },
+    "LR_B": {
+      "family": "LR",
+      "variant": "B",
+      "config": {
+        "C": 1.0,
+        "class_weight": null
+      }
+    },
+    "LR_A_balanced": {
+      "family": "LR",
+      "variant": "A",
+      "config": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      }
+    },
+    "LR_B_balanced": {
+      "family": "LR",
+      "variant": "B",
+      "config": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      }
+    },
+    "DT_A": {
+      "family": "DT",
+      "variant": "A",
+      "config": {
+        "max_depth": 3,
+        "min_samples_leaf": 1
+      }
+    },
+    "DT_B": {
+      "family": "DT",
+      "variant": "B",
+      "config": {
+        "max_depth": 5,
+        "min_samples_leaf": 5
+      }
+    },
+    "RF_A": {
+      "family": "RF",
+      "variant": "A",
+      "config": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt"
+      }
+    },
+    "RF_B": {
+      "family": "RF",
+      "variant": "B",
+      "config": {
+        "n_estimators": 300,
+        "max_depth": 10,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt"
+      }
+    },
+    "GB_A": {
+      "family": "GB",
+      "variant": "A",
+      "config": {
+        "n_estimators": 100,
+        "learning_rate": 0.1,
+        "max_depth": 2,
+        "min_samples_leaf": 1
+      }
+    },
+    "GB_B": {
+      "family": "GB",
+      "variant": "B",
+      "config": {
+        "n_estimators": 300,
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "min_samples_leaf": 1
+      }
+    }
+  },
+  "search_grids": {
+    "LR_C_sensitivity": [
+      0.01,
+      0.1,
+      1,
+      10,
+      100
+    ],
+    "DT": {
+      "max_depth": [
+        3,
+        5,
+        7,
+        null
+      ],
+      "min_samples_leaf": [
+        1,
+        5,
+        10
+      ]
+    },
+    "RF": {
+      "n_estimators": [
+        300
+      ],
+      "max_depth": [
+        5,
+        10,
+        null
+      ],
+      "min_samples_leaf": [
+        1,
+        5,
+        10
+      ],
+      "max_features": [
+        "sqrt",
+        0.5
+      ]
+    },
+    "GB": {
+      "n_estimators": [
+        100,
+        300
+      ],
+      "learning_rate": [
+        0.05,
+        0.1
+      ],
+      "max_depth": [
+        2,
+        3
+      ],
+      "min_samples_leaf": [
+        1,
+        20
+      ]
+    }
+  },
+  "files": {
+    "LR_A": "models/phase4/LR_A.joblib",
+    "LR_B": "models/phase4/LR_B.joblib",
+    "LR_A_balanced": "models/phase4/LR_A_balanced.joblib",
+    "LR_B_balanced": "models/phase4/LR_B_balanced.joblib",
+    "DT_A": "models/phase4/DT_A.joblib",
+    "DT_B": "models/phase4/DT_B.joblib",
+    "RF_A": "models/phase4/RF_A.joblib",
+    "RF_B": "models/phase4/RF_B.joblib",
+    "GB_A": "models/phase4/GB_A.joblib",
+    "GB_B": "models/phase4/GB_B.joblib"
+  }
+}

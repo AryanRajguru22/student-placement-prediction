@@ -1,0 +1,5 @@
+split,rows,share_%,Placed,NotPlaced,Placed_%
+train,6938.0,70.0,2883.0,4055.0,41.55
+validation,1487.0,15.0,618.0,869.0,41.56
+test,1487.0,15.0,618.0,869.0,41.56
+modeling_dataset,9912.0,100.0,4119.0,5793.0,41.56

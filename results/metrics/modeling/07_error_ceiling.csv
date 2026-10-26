@@ -1,0 +1,12 @@
+quantity,value
+observed error rate at 0.50 (validation),0.19838601210490922
+"expected error rate if probabilities were perfectly calibrated: mean(min(p, 1-p))",0.19622741171967764
+n in high band (p >= 0.80),277.0
+observed NotPlaced share in high band (error rate there),0.10108303249097472
+expected error in high band if calibrated: mean(1-p),0.1214517509703487
+n in low band (p <= 0.20),584.0
+observed Placed share in low band (error rate there),0.10273972602739725
+expected error in low band if calibrated: mean(p),0.08342570010232499
+share of validation students with 0.2 < p < 0.8,0.4209818426361802
+share of all errors that fall in 0.2 < p < 0.8,0.7016949152542373
+"overlap coefficient of predicted-probability distributions, Placed vs NotPlaced (25 bins; 1 = identical)",0.3949430398367353

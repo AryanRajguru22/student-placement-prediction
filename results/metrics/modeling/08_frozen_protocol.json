@@ -1,0 +1,90 @@
+{
+  "written_at_utc": "2026-10-02T18:51:44+00:00",
+  "written_before_test_open": true,
+  "dry_run": false,
+  "primary_model": {
+    "id": "LR_B",
+    "config": {
+      "C": 1.0,
+      "class_weight": null
+    },
+    "representation": "B (5 standardised continuous; Internships/Projects/Workshops one-hot; 2 binary one-hot)",
+    "probabilities": "raw, no recalibration",
+    "class_weight": null
+  },
+  "secondary_comparators": {
+    "GB_B": {
+      "n_estimators": 300,
+      "learning_rate": 0.05,
+      "max_depth": 2,
+      "min_samples_leaf": 1
+    },
+    "RF_B": {
+      "n_estimators": 300,
+      "max_depth": 10,
+      "min_samples_leaf": 10,
+      "max_features": "sqrt"
+    }
+  },
+  "thresholds": {
+    "reference_default": 0.5,
+    "selected_operating_threshold_under_F1_oriented_criterion": 0.35,
+    "rule": "predict Placed when p >= threshold; no other threshold is evaluated"
+  },
+  "final_fit": {
+    "fitted_on": "train + validation",
+    "n": 8425,
+    "specification_changed": false
+  },
+  "metrics": [
+    "roc_auc",
+    "log_loss",
+    "brier",
+    "calibration_intercept (joint Cox)",
+    "calibration_slope",
+    "citl",
+    "ece (10 equal-count bins)",
+    "accuracy",
+    "precision",
+    "recall/sensitivity",
+    "f1",
+    "specificity",
+    "TP/TN/FP/FN"
+  ],
+  "bootstrap": {
+    "resamples": 2000,
+    "seed": 42,
+    "interval": "percentile 95%",
+    "unit": "test student"
+  },
+  "calibration_bins": "10 equal-count bins, Wilson 95% intervals; no recalibration after seeing the test result",
+  "prohibited_after_open": [
+    "model selection",
+    "threshold tuning",
+    "calibration selection",
+    "feature selection",
+    "hyper-parameter tuning",
+    "preprocessing changes"
+  ],
+  "artifact_sha256_at_start": {
+    "processed_train": "f24835bc3fdf03a68f97a7fa9ac9a9600674eca32a2757a43fbf133b43b3bb32",
+    "processed_validation": "6dc3db7d5bf0db7993deb957778ee142b9bd562ef8f800bf1a9aa5ed04795f4f",
+    "processed_modeling_dataset": "5a30b9de54fa8b794f71a5d113a5274f5a2239de3c09b236e4301b59033e764e",
+    "raw_train": "c9ee94194761275e2c4f5c6296b51490d32a5a4084a857036d2a2bf22b38fbad",
+    "raw_validation": "6c3fd9fa80066a9de3d69215000dce87a9fb2ca3d3452d1a875a613fd2cec62f",
+    "model_configs.json": "d38e6a7bacbefaad0973dce8a63f2f16170f87fe4e4c8f12931f953a8159174b",
+    "LR_B.joblib": "8c50939c21aa331d4fe0ba88e75e7190d1be1e20399011058f759ec223bb131d",
+    "GB_B.joblib": "268bbd11f174c3b1907fb0e2c924723b265807469e5c6a43292dc6ec7776b660",
+    "RF_B.joblib": "97f678c0f384f2af3e044fabfbbe232b61429dbb81d82d4dbad9e228a00b8f0f"
+  },
+  "test_file_stat_at_start": {
+    "processed_test": {
+      "size": 59727,
+      "mtime_ns": 1790945437252205100
+    },
+    "raw_test": {
+      "size": 58755,
+      "mtime_ns": 1790944769506479900
+    }
+  }
+}
