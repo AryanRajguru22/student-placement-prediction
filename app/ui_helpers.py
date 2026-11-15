@@ -33,7 +33,11 @@ div[data-testid="stVerticalBlockBorderWrapper"] {{ background: #fff; }}
 .hero-note {{ font-size: .9rem; color: {MUTED}; }}
 .ruler {{ margin: 2.1rem 0 .2rem 0; }}
 .gauge {{ position: relative; height: 12px; border-radius: 6px; background: #E3E8EE; margin: 0 .5rem 2.1rem .5rem; }}
-.gauge-fill {{ height: 100%; border-radius: 6px; background: {NAVY}; }}
+.gauge-fill {{ height: 100%; border-radius: 6px; background: {NAVY}; animation: gauge-grow 450ms ease-out; }}
+@keyframes gauge-grow {{ from {{ width: 0; }} }}
+@media (prefers-reduced-motion: reduce) {{ .gauge-fill {{ animation: none; }} }}
+.gauge-zone {{ position: absolute; top: -3px; height: 18px; border: 1.5px solid #B45309; border-radius: 3px; pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(245,158,11,.55) 0 4px, rgba(245,158,11,.12) 4px 8px); }}
 .tick {{ position: absolute; top: -6px; width: 2px; height: 24px; background: {INK}; }}
 .tick-lab {{ position: absolute; transform: translateX(-50%); font-size: .85rem; font-weight: 600; color: {INK}; white-space: nowrap; font-variant-numeric: tabular-nums; }}
 .tick-up {{ top: -30px; }}
@@ -61,7 +65,15 @@ div[data-testid="stVerticalBlockBorderWrapper"] {{ background: #fff; }}
 .stale {{ border: 1px solid #B7D7EC; border-left: 4px solid {NAVY}; background: #fff; padding: .7rem 1rem; border-radius: 4px; font-size: .95rem; color: {INK}; margin-top: 1rem; }}
 .disclaimer {{ border-left: 4px solid #7B8794; background: #fff; border-top: 1px solid {LINE}; border-right: 1px solid {LINE}; border-bottom: 1px solid {LINE};
               padding: .8rem 1rem; border-radius: 4px; font-size: .92rem; color: {INK}; }}
+.steps {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: .2rem 0 .6rem 0; }}
+.step {{ background: #fff; border: 1px solid {LINE}; border-top: 3px solid {NAVY}; border-radius: 8px; padding: .8rem 1rem; }}
+.step-t {{ font-weight: 650; color: {NAVY}; margin-bottom: .15rem; }}
+.step-d {{ font-size: .9rem; color: {MUTED}; line-height: 1.45; }}
+.group-desc {{ font-size: .85rem; color: {MUTED}; margin: -.35rem 0 .7rem 0; }}
+.meaning {{ margin-top: 1rem; background: #fff; border: 1px solid {LINE}; border-radius: 8px; padding: .8rem 1rem; font-size: .96rem; color: {INK}; line-height: 1.55; }}
+.scn-note {{ font-size: .88rem; color: {MUTED}; margin: .2rem 0 .6rem 0; }}
 @media (max-width: 640px) {{
+  .steps {{ grid-template-columns: 1fr; }}
   h1.app-title {{ font-size: 1.75rem; }}
   .hero {{ padding: 1.1rem 1rem 1rem 1rem; }}
   .hero-prob {{ font-size: 3.4rem; }}
@@ -80,6 +92,31 @@ def header() -> None:
     st.markdown('<h1 class="app-title">Student Placement Probability Predictor</h1>'
                 '<div class="app-sub">Predicting placement probability from academic, technical and employability characteristics.</div>'
                 '<hr class="rule">', unsafe_allow_html=True)
+
+
+def intro() -> None:
+    from content import HOW_TO_READ, INTRO_STEPS, LIMITATIONS_SHORT, PRIVACY_NOTE
+    cards = "".join(f'<div class="step"><div class="step-t">{escape(t)}</div><div class="step-d">{escape(d)}</div></div>' for t, d in INTRO_STEPS)
+    st.markdown(f'<div class="steps">{cards}</div>', unsafe_allow_html=True)
+    st.caption(HOW_TO_READ.replace("**", ""))
+    with st.expander("Before you start: what this tool can and cannot tell you"):
+        st.markdown(f"- {LIMITATIONS_SHORT}\n- {PRIVACY_NOTE}\n- It is not a recruitment decision-maker and gives no guarantee of placement or rejection.")
+
+
+def interpretation_html(pred: Prediction) -> str:
+    """Plain-language reading of one result. Descriptive only: never a guarantee, never a confidence interval."""
+    op, ref = pred.operating_threshold, pred.reference_threshold
+    p100 = pred.probability * 100
+    lab = lambda yes: "Placed" if yes else "Not Placed"
+    txt = (f"<b>What this means.</b> Among students with characteristics like these, the model puts the chance of placement at roughly {p100:.0f} in 100 "
+           f"({escape(pred.band.lower())}). ")
+    if pred.placed_at_operating == pred.placed_at_reference:
+        txt += f"Both cut-offs label this profile <b>{lab(pred.placed_at_operating)}</b>. "
+    else:
+        txt += (f"The two cut-offs disagree because the probability lies between {op:.2f} and {ref:.2f}: it is labelled <b>{lab(pred.placed_at_operating)}</b> at {op:.2f} "
+                f"and <b>{lab(pred.placed_at_reference)}</b> at {ref:.2f}. That is expected near the boundary and is not a contradiction. ")
+    txt += "It is a statistical estimate from one dataset, not a promise or a decision about any individual."
+    return f'<div class="meaning">{txt}</div>'
 
 
 def section(title: str) -> None:
@@ -108,13 +145,16 @@ def result_html(pred: Prediction) -> tuple[str, str]:
     op, ref = pred.operating_threshold, pred.reference_threshold
     shown = prob_text(pred.probability, (op, ref) + BAND_EDGES)
     aria = (f"Estimated placement probability {shown} on a scale from 0 to 100 percent. "
-            f"Project threshold at {op * 100:.0f} percent, conventional threshold at {ref * 100:.0f} percent.")
+            f"Project threshold at {op * 100:.0f} percent, conventional threshold at {ref * 100:.0f} percent. "
+            f"The hatched zone from {op * 100:.0f} to {ref * 100:.0f} percent is where the two thresholds disagree.")
     ruler = (f'<div class="ruler" role="img" aria-label="{escape(aria)}"><div class="gauge">'
              f'<div class="gauge-fill" style="width:{pred.probability * 100:.3f}%"></div>'
+             f'<div class="gauge-zone" style="left:{op * 100:.1f}%;width:{(ref - op) * 100:.1f}%"></div>'
              f'<div class="tick" style="left:{op * 100:.1f}%"></div><div class="tick-lab tick-up" style="left:{op * 100:.1f}%">{op:.2f}</div>'
              f'<div class="tick" style="left:{ref * 100:.1f}%"></div><div class="tick-lab tick-dn" style="left:{ref * 100:.1f}%">{ref:.2f}</div></div>'
              f'<div class="ruler-key">Filled bar: estimated probability. Tick marks: {op:.2f} project threshold (label above the bar) '
-             f'and {ref:.2f} conventional threshold (label below).</div></div>')
+             f'and {ref:.2f} conventional threshold (label below). Hatched zone {op:.2f} to {ref:.2f}: the two thresholds disagree '
+             f'(Placed at {op:.2f}, Not Placed at {ref:.2f}).</div></div>')
     left = (f'<div class="hero-label">Estimated probability of placement</div><div class="hero-prob">{shown}</div>'
             f'<div class="hero-note">A model-based estimate for students with these characteristics, not a guarantee.</div>{ruler}')
     right = (f'<div class="fact"><div class="fact-k">Project threshold {op:.2f}</div><div class="fact-v">{_pill(pred.placed_at_operating)}</div>'

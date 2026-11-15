@@ -1,0 +1,263 @@
+{
+ "note": "Regression snapshot of the frozen Phase 7 LR_B artifact on fixed synthetic profiles. Not an evaluation; no dataset was read to make it.",
+ "artifact_sha256": "58e8b04e9666b13be47e0cb5c4850707312976776ab5bdfbaa436874ca3cb0eb",
+ "coef": [
+  0.23336729593360228,
+  0.5013631234392555,
+  0.27068631305413965,
+  0.2573976926229898,
+  0.21164708465535403,
+  0.20055099856847397,
+  0.193319189685824,
+  0.6148521086220123,
+  -0.4725066930792443,
+  -0.31476383775118655,
+  -0.3215986381285527,
+  0.44900996122677533,
+  0.02970548239931506,
+  0.7210105498945715,
+  0.9744537444090507
+ ],
+ "intercept": -1.6607495007242825,
+ "classes": [
+  0,
+  1
+ ],
+ "scaler_mean": [
+  7.69740059347181,
+  79.32154302670624,
+  4.3199881305637975,
+  69.14100890207715,
+  74.44059347181009
+ ],
+ "scaler_scale": [
+  0.6390026606796961,
+  8.160001890532254,
+  0.4129842179197746,
+  10.406266552027654,
+  8.909971855221968
+ ],
+ "output_feature_names": [
+  "CGPA",
+  "AptitudeTestScore",
+  "SoftSkillsRating",
+  "SSC_Marks",
+  "HSC_Marks",
+  "Internships_0",
+  "Internships_2",
+  "Projects_0",
+  "Projects_1",
+  "Projects_2",
+  "Workshops/Certifications_1",
+  "Workshops/Certifications_2",
+  "Workshops/Certifications_3",
+  "ExtracurricularActivities_Yes",
+  "PlacementTraining_Yes"
+ ],
+ "rows": [
+  {
+   "name": "typical_example",
+   "profile": {
+    "CGPA": 7.7,
+    "Internships": 1,
+    "Projects": 2,
+    "Workshops/Certifications": 1,
+    "AptitudeTestScore": 80,
+    "SoftSkillsRating": 4.4,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "Yes",
+    "SSC_Marks": 70,
+    "HSC_Marks": 73
+   },
+   "probability": 0.3729591694460597,
+   "log_odds": -0.519542710653387
+  },
+  {
+   "name": "all_minimum",
+   "profile": {
+    "CGPA": 6.5,
+    "AptitudeTestScore": 60.0,
+    "SoftSkillsRating": 3.0,
+    "SSC_Marks": 55.0,
+    "HSC_Marks": 57.0,
+    "Internships": 0,
+    "Projects": 0,
+    "Workshops/Certifications": 0,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "No"
+   },
+   "probability": 0.016318204452641902,
+   "log_odds": -4.099021144046388
+  },
+  {
+   "name": "all_maximum",
+   "profile": {
+    "CGPA": 9.1,
+    "AptitudeTestScore": 90.0,
+    "SoftSkillsRating": 4.8,
+    "SSC_Marks": 90.0,
+    "HSC_Marks": 88.0,
+    "Internships": 2,
+    "Projects": 3,
+    "Workshops/Certifications": 3,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.9294800947547379,
+   "log_odds": 2.578730378058113
+  },
+  {
+   "name": "random_1",
+   "profile": {
+    "CGPA": 7.8,
+    "AptitudeTestScore": 69.64,
+    "SoftSkillsRating": 4.06,
+    "SSC_Marks": 65.5,
+    "HSC_Marks": 78.62,
+    "Internships": 0,
+    "Projects": 1,
+    "Workshops/Certifications": 1,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.1193690990785203,
+   "log_odds": -1.998418217687839
+  },
+  {
+   "name": "random_2",
+   "profile": {
+    "CGPA": 9.02,
+    "AptitudeTestScore": 69.53,
+    "SoftSkillsRating": 4.09,
+    "SSC_Marks": 82.24,
+    "HSC_Marks": 80.25,
+    "Internships": 1,
+    "Projects": 0,
+    "Workshops/Certifications": 2,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "No"
+   },
+   "probability": 0.5785420166311752,
+   "log_odds": 0.3167910854128766
+  },
+  {
+   "name": "random_3",
+   "profile": {
+    "CGPA": 7.84,
+    "AptitudeTestScore": 82.3,
+    "SoftSkillsRating": 4.24,
+    "SSC_Marks": 86.85,
+    "HSC_Marks": 87.81,
+    "Internships": 1,
+    "Projects": 1,
+    "Workshops/Certifications": 1,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.3676891043121558,
+   "log_odds": -0.5421434408845833
+  },
+  {
+   "name": "random_4",
+   "profile": {
+    "CGPA": 6.68,
+    "AptitudeTestScore": 76.89,
+    "SoftSkillsRating": 4.22,
+    "SSC_Marks": 58.93,
+    "HSC_Marks": 68.71,
+    "Internships": 1,
+    "Projects": 0,
+    "Workshops/Certifications": 0,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.41930680773940143,
+   "log_odds": -0.3256196589682183
+  },
+  {
+   "name": "random_5",
+   "profile": {
+    "CGPA": 8.75,
+    "AptitudeTestScore": 71.17,
+    "SoftSkillsRating": 3.23,
+    "SSC_Marks": 85.88,
+    "HSC_Marks": 69.1,
+    "Internships": 2,
+    "Projects": 2,
+    "Workshops/Certifications": 1,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.15802296417704745,
+   "log_odds": -1.6730123751425694
+  },
+  {
+   "name": "random_6",
+   "profile": {
+    "CGPA": 7.7,
+    "AptitudeTestScore": 74.58,
+    "SoftSkillsRating": 3.8,
+    "SSC_Marks": 77.02,
+    "HSC_Marks": 66.18,
+    "Internships": 1,
+    "Projects": 0,
+    "Workshops/Certifications": 3,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "No"
+   },
+   "probability": 0.1612810478451726,
+   "log_odds": -1.648727188877998
+  },
+  {
+   "name": "random_7",
+   "profile": {
+    "CGPA": 8.18,
+    "AptitudeTestScore": 66.48,
+    "SoftSkillsRating": 3.35,
+    "SSC_Marks": 61.51,
+    "HSC_Marks": 85.46,
+    "Internships": 1,
+    "Projects": 0,
+    "Workshops/Certifications": 2,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "No"
+   },
+   "probability": 0.2589564350166292,
+   "log_odds": -1.051399572735631
+  },
+  {
+   "name": "random_8",
+   "profile": {
+    "CGPA": 8.79,
+    "AptitudeTestScore": 74.37,
+    "SoftSkillsRating": 3.64,
+    "SSC_Marks": 61.71,
+    "HSC_Marks": 65.24,
+    "Internships": 2,
+    "Projects": 2,
+    "Workshops/Certifications": 3,
+    "ExtracurricularActivities": "No",
+    "PlacementTraining": "Yes"
+   },
+   "probability": 0.17780517809709934,
+   "log_odds": -1.53128893077655
+  },
+  {
+   "name": "random_9",
+   "profile": {
+    "CGPA": 7.6,
+    "AptitudeTestScore": 87.87,
+    "SoftSkillsRating": 3.57,
+    "SSC_Marks": 63.35,
+    "HSC_Marks": 62.66,
+    "Internships": 0,
+    "Projects": 3,
+    "Workshops/Certifications": 3,
+    "ExtracurricularActivities": "Yes",
+    "PlacementTraining": "No"
+   },
+   "probability": 0.24333693998778477,
+   "log_odds": -1.1344709880602055
+  }
+ ]
+}

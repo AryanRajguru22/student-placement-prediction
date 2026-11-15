@@ -10,3 +10,7 @@ data/processed/test.csv
 data/processed/modeling_dataset.csv
 data/processed/campus_recruitment_combined_flagged.csv
 results/metrics/modeling/08_test_predictions.csv
+
+# Third-party university course material (lecture slides, handouts): not part of this project, not published
+theory ppts/
+.pytest_cache/

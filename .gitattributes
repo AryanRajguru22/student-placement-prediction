@@ -1,0 +1,7 @@
+# Serialized model artifacts and binary documents must never be line-ending converted: the app verifies the model by SHA-256.
+*.joblib binary
+*.pdf binary
+*.pptx binary
+*.docx binary
+*.png binary
+*.jpg binary

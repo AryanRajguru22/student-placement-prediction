@@ -29,6 +29,7 @@ FEATURES = ["CGPA", "Internships", "Projects", "Workshops/Certifications", "Apti
 CONTINUOUS = ["CGPA", "AptitudeTestScore", "SoftSkillsRating", "SSC_Marks", "HSC_Marks"]
 COUNT = ["Internships", "Projects", "Workshops/Certifications"]
 BINARY = ["ExtracurricularActivities", "PlacementTraining"]
+POSITIVE_CLASS = 1                      # training target: PlacementStatus == "Placed" -> 1, "NotPlaced" -> 0 (src/build_notebook_05.py)
 LABELS = {"CGPA": "CGPA", "Internships": "Internships", "Projects": "Projects", "Workshops/Certifications": "Workshops / Certifications",
           "AptitudeTestScore": "Aptitude Test Score", "SoftSkillsRating": "Soft Skills Rating", "ExtracurricularActivities": "Extracurricular Activities",
           "PlacementTraining": "Placement Training", "SSC_Marks": "SSC Marks", "HSC_Marks": "HSC Marks"}
@@ -86,6 +87,8 @@ def load_bundle() -> ModelBundle:
         raise ModelLoadError("The frozen model could not be loaded. Check that the dependencies in requirements are installed.") from exc
     if list(getattr(pipeline, "feature_names_in_", [])) != FEATURES:
         raise ModelLoadError("The loaded pipeline does not expect the documented ten input features.")
+    if list(getattr(pipeline, "classes_", [])) != [0, 1]:      # decision_function() (log-odds) refers to the second class
+        raise ModelLoadError("The loaded pipeline does not have the expected class labels (0 = Not Placed, 1 = Placed).")
     return ModelBundle(pipeline=pipeline, metadata=metadata)
 
 
@@ -154,7 +157,8 @@ def classify(p: float, threshold: float) -> bool:
 
 def predict(bundle: ModelBundle, clean: dict) -> Prediction:
     df = to_frame(clean)
-    p = float(bundle.pipeline.predict_proba(df)[0, 1])
+    col = list(bundle.pipeline.classes_).index(POSITIVE_CLASS)      # never assume column 1 is the positive class
+    p = float(bundle.pipeline.predict_proba(df)[0, col])
     z = float(bundle.pipeline.decision_function(df)[0])
     thr = bundle.metadata["thresholds"]
     if not (0.0 <= p <= 1.0) or not math.isfinite(z):

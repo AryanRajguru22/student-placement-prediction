@@ -1,0 +1,3 @@
+# Development / test dependencies (the app itself needs only app/requirements.txt)
+-r app/requirements.txt
+pytest==8.4.2
