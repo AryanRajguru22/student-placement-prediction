@@ -1,0 +1,14 @@
+.venv
+.git
+**/__pycache__
+data
+notebooks
+results
+report
+presentation
+design
+src
+theory ppts
+models/phase4
+models/phase7/GB_B_final.joblib
+models/phase7/RF_B_final.joblib

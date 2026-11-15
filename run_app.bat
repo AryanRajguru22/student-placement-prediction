@@ -34,7 +34,7 @@ if not exist ".venv\.requirements-app.installed" (
 echo Starting the app. Your browser should open http://localhost:8501 in a few seconds (open it yourself if not). Press Ctrl+C in this window to stop.
 rem headless = skip Streamlit's first-run e-mail prompt; the browser is opened here instead
 start "" /b cmd /c "ping -n 7 127.0.0.1 >nul & start "" http://localhost:8501"
-".venv\Scripts\python.exe" -m streamlit run "app\app.py" --server.headless true
+".venv\Scripts\python.exe" -m streamlit run "app\app.py" --server.headless true --server.address localhost
 if errorlevel 1 ( echo ERROR: the app stopped with an error. See app\README.md, section Troubleshooting. & goto :fail )
 endlocal
 exit /b 0

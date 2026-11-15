@@ -12,8 +12,10 @@ showErrorDetails = "none"      # uncaught errors show a generic message, never a
 toolbarMode = "minimal"
 
 [server]
-address = "localhost"          # local use only: the app is not reachable from other machines unless this is overridden
-headless = true                # no first-run e-mail prompt; open the printed local URL in a browser yourself (run_app.bat does it for you)
+headless = true                # no first-run e-mail prompt. Local-only binding is applied by run_app.bat (--server.address localhost), so hosts can reach the app
+enableXsrfProtection = true
+enableCORS = true
+maxUploadSize = 1               # the app has no uploads; keep the limit minimal
 
 [browser]
 gatherUsageStats = false
