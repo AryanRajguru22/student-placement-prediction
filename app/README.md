@@ -1,6 +1,6 @@
 # Student Placement Probability Predictor (Phase 8A)
 
-An interactive Streamlit app that turns ten student characteristics into a model-based **placement probability**, classifications at two thresholds (the project's 0.35 and the conventional 0.50), and an additive explanation of the estimate. It runs locally on your own computer.
+An interactive Streamlit app that turns ten student characteristics into a model-based **placement probability**, classifications at two thresholds (the project's 0.35 and the conventional 0.50), and an additive explanation of the estimate. It runs locally on your own computer or as a hosted Streamlit app (see *Public deployment* below).
 
 It uses the **frozen Phase 7 Logistic Regression B (`LR_B`)**: the Phase 4 pipeline (preprocessing + L2 logistic regression, C = 1, no class weighting, categorical Internships / Projects / Workshops) **refit on train + validation** and evaluated once on the held-out test set in Phase 7. The app trains nothing, tunes nothing and recalibrates nothing.
 
@@ -20,9 +20,9 @@ pip install -r requirements-app.txt
 streamlit run app/app.py
 ```
 
-Streamlit prints the address when it is ready: open <http://localhost:8501> in a browser (the manual command does not open a tab for you; `run_app.bat` does). `.streamlit/config.toml` runs the server in headless mode, which also skips Streamlit's first-run e-mail prompt. **Stop it with Ctrl+C in the terminal window.** Launch it from the project root so `.streamlit/config.toml` (light theme, local-only server address, usage statistics off, no error details in the UI) is picked up.
+Streamlit prints the address when it is ready: open <http://localhost:8501> in a browser (the manual command does not open a tab for you; `run_app.bat` does). `.streamlit/config.toml` runs the server in headless mode, which also skips Streamlit's first-run e-mail prompt. **Stop it with Ctrl+C in the terminal window.** Launch it from the project root so `.streamlit/config.toml` (light theme, usage statistics off, no error details in the UI) is picked up.
 
-`requirements.txt` in the project root is the full research environment (notebooks, statistics); `requirements-app.txt` is the lean, version-pinned set that is enough for the app and `verify_app.py`.
+`requirements.txt` in the project root is the full research environment (notebooks, statistics); `requirements-app.txt` installs the lean, version-pinned set in `app/requirements.txt` (the file the hosted app uses), which is enough for the app and the verification scripts. `requirements-dev.txt` adds pytest.
 
 To check the application layer (model loading, predictions, thresholds, explanation maths, input validation, stale-result handling, error handling and a headless end-to-end UI run):
 
@@ -38,8 +38,33 @@ python app/verify_app.py
 | "The frozen model file ... is missing or unreadable" / "does not match the frozen Phase 7 fingerprint" | `models/phase7/LR_B_final.joblib` must be present and unmodified (its SHA-256 is recorded in `app/model_metadata.json`). Restore it from your copy of the project; do not retrain a replacement. |
 | "The model metadata file ... is missing or unreadable" | Restore `app/model_metadata.json` (it can be regenerated with `python app/build_app_metadata.py` from the full project, which needs `data/processed/train.csv` and `validation.csv` and the aggregate Phase 7 metric files). |
 | Port 8501 already in use | `streamlit run app/app.py --server.port 8502` and open <http://localhost:8502>. |
-| Need to open the app from another device | The server listens on `localhost` only, on purpose. Override with `--server.address 0.0.0.0` only on a network you trust; the app has no login. |
+| Need to open the app from another device | `run_app.bat` starts the server on `localhost` only, on purpose. Override with `--server.address 0.0.0.0` only on a network you trust; the app has no login. |
 | "The prediction could not be computed because of an internal error" | Reload the page and retry. Developer diagnostics (exception type and stack frames, never the entered values) are printed in the terminal that runs Streamlit. |
+
+## Public deployment (Streamlit Community Cloud)
+The app is deployable as-is from this repository; its users install and download nothing.
+
+| Setting | Value |
+|---|---|
+| Repository | `AryanRajguru22/student-placement-prediction` (public) |
+| Branch | `main` |
+| Main file path | `app/app.py` |
+| Python version (Advanced settings) | 3.13 (3.11 and 3.12 also work; the pinned set was verified on 3.13.5) |
+| Dependencies | `app/requirements.txt` (Community Cloud reads the requirements file next to the entry point first; `scikit-learn==1.9.1` must stay pinned) |
+| Secrets | none needed; do not add any |
+
+The frozen model (`models/phase7/LR_B_final.joblib`, 6.7 kB) and `app/model_metadata.json` are committed, so the hosted app finds them by relative path. On start-up the app verifies the model's SHA-256 and the scikit-learn version and refuses to run if either differs. `.gitattributes` marks `*.joblib` as binary so no line-ending conversion can alter the file. The held-out test files are not in the repository and the app never needs them. Optional container: `docker build -t placement-predictor . && docker run --rm -p 8501:8501 placement-predictor`.
+
+Steps: sign in at <https://share.streamlit.io> with GitHub, choose **Create app**, enter the values above, **Deploy**. Once live, press **Load typical profile** then **Predict Placement Probability**: the result must read **37.3%**, the same as a local run (a quick end-to-end parity check). The app stores nothing; entered profiles live only in the session's memory on the host.
+
+## Tests
+```
+pip install -r requirements-dev.txt
+python -m pytest tests -q          # 157 tests: artifact, inference, model-integrity and Streamlit AppTest
+python app/verify_app.py           # 182 checks (application-level verification)
+python app/verify_product.py       # 38 checks (scenarios, report download, deployment files)
+```
+The suite never opens the held-out test files (an audit hook raises if one is opened). Among other things it shows that no `fit` / `fit_transform` / `partial_fit` is reachable from the app (every fit method is armed to raise during a full app run), that the model file hash is the same before and after, that the frozen coefficients equal a recorded snapshot, that the displayed probability is P(Placed) selected by class label, and that changing any input removes the previous result. `tests/fixtures/golden_snapshot.json` records the frozen model's outputs on 12 fixed synthetic profiles as a regression snapshot (it is not an evaluation).
 
 ## Using the app
 1. Enter all ten fields (or press **Load typical profile** and edit it). **Clear profile** empties every field. Out-of-range numbers are flagged under the field as you type.
@@ -55,7 +80,10 @@ python app/verify_app.py
 | `ui_helpers.py` | CSS/HTML fragments (result card with threshold ruler, factor bars, disclaimer) |
 | `model_metadata.json` | Supported input ranges, valid levels, thresholds, artifact fingerprint, dataset facts, Phase 7 aggregate metrics (written by `build_app_metadata.py`) |
 | `build_app_metadata.py` | One-off generator of the metadata from the frozen model, train/validation data and aggregate Phase 7 metric files |
-| `verify_app.py` | Application-level verification (178 checks) |
+| `verify_app.py` | Application-level verification (182 checks) |
+| `verify_product.py` | Scenario comparison, report download, content and deployment-file checks (38 checks) |
+| `content.py`, `scenarios.py`, `report.py` | Plain-language field help, hypothetical-scenario comparison (same frozen model), downloadable HTML report |
+| `../tests/` | pytest suite (157 tests) and the recorded regression snapshot |
 
 Artifacts used: `models/phase7/LR_B_final.joblib` (preprocessing and model in one scikit-learn `Pipeline`; nothing is re-implemented in the app) and `app/model_metadata.json`.
 
@@ -113,4 +141,4 @@ Entered profiles are held only in the memory of the local Streamlit session whil
 - A probability describes a group of similar students, not a certainty for an individual (about 20% of held-out students were misclassified).
 - Reported Phase 7 held-out performance comes from the one-time evaluation of the frozen model; the app does not reproduce or access it.
 - **Test-set protection:** no code in the app reads the held-out test split or any per-student test prediction file (`verify_app.py` scans the app source and runs under an audit hook that raises if such a file is opened). The test data were not used for model development, selection, tuning, calibration or threshold selection (earlier phases' descriptive access and the single Phase 7 evaluation are disclosed in the project README and report).
-- The app runs locally; it is not deployed anywhere.
+- Hosting changes nothing about the model: the hosted app runs the same frozen artifact and code. A hosted copy processes entered values in the host's memory for the length of the session; it does not store or log them.
