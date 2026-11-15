@@ -5,3 +5,5 @@
 *.docx binary
 *.png binary
 *.jpg binary
+# The raw datasets must stay byte-for-byte as supplied: never convert line endings (their SHA-256 is verified by tests/)
+data/raw/*.csv -text
